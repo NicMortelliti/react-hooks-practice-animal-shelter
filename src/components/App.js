@@ -7,6 +7,15 @@ function App() {
   const [pets, setPets] = useState([]);
   const [filters, setFilters] = useState({ type: "all" });
 
+  function updatePetsArray() {
+    console.log(filters);
+    let newUrl = "http://localhost:3001/pets";
+    if (filters !== "all") {
+      newUrl = `${newUrl}?type=${filters}`;
+    }
+    console.log(newUrl);
+  }
+
   return (
     <div className="ui container">
       <header>
@@ -15,7 +24,10 @@ function App() {
       <div className="ui container">
         <div className="ui grid">
           <div className="four wide column">
-            <Filters />
+            <Filters
+              onChangeType={e => setFilters(e.target.value)}
+              onFindPetsClick={updatePetsArray}
+            />
           </div>
           <div className="twelve wide column">
             <PetBrowser />
