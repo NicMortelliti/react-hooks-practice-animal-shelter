@@ -24,10 +24,7 @@ function Pet({
         {isAdopted ? (
           <button className="ui disabled button">Already adopted</button>
         ) : (
-          <button
-            className="ui primary button"
-            onClick={() => onAdoptPet(id, true)}
-          >
+          <button className="ui primary button" onClick={() => onAdoptPet(id)}>
             Adopt pet
           </button>
         )}

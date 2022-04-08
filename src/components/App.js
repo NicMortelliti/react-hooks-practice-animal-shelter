@@ -17,12 +17,12 @@ function App() {
       .then(filteredPets => setPets(filteredPets));
   }
 
-  function updateAdoptionStatus(id, adoptStatus) {
+  function updateAdoptionStatus(id) {
     const updatedPets = pets.map(pet => {
       if (pet.id === id) {
         const updatedPet = {
           ...pet,
-          isAdopted: adoptStatus,
+          isAdopted: true,
         };
 
         return updatedPet;
