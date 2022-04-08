@@ -8,12 +8,17 @@ function App() {
   const [filters, setFilters] = useState({ type: "all" });
 
   function updatePetsArray() {
-    console.log(filters);
     let newUrl = "http://localhost:3001/pets";
     if (filters !== "all") {
       newUrl = `${newUrl}?type=${filters}`;
     }
-    console.log(newUrl);
+    fetch(newUrl)
+      .then(r => r.json())
+      .then(filteredPets => setPets(filteredPets));
+  }
+
+  function updateAdoptionStatus(e) {
+    console.log(`Adopted pet ${e}`);
   }
 
   return (
@@ -30,7 +35,7 @@ function App() {
             />
           </div>
           <div className="twelve wide column">
-            <PetBrowser />
+            <PetBrowser pets={pets} onAdoptPet={updateAdoptionStatus} />
           </div>
         </div>
       </div>
