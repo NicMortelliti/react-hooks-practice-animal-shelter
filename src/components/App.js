@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Filters from "./Filters";
 import PetBrowser from "./PetBrowser";
@@ -6,6 +6,12 @@ import PetBrowser from "./PetBrowser";
 function App() {
   const [pets, setPets] = useState([]);
   const [filters, setFilters] = useState({ type: "all" });
+
+  useEffect(() => {
+    fetch("http://localhost:3001/pets")
+      .then(r => r.json())
+      .then(pets => setPets(pets));
+  }, []);
 
   function updatePetsArray() {
     let newUrl = "http://localhost:3001/pets";
