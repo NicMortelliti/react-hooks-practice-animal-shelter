@@ -21,18 +21,16 @@ function Pet({
         </div>
       </div>
       <div className="extra content">
-        <button
-          className={`ui {${isAdopted} ? "primary" : "disabled"} button`}
-          onClick={() => onAdoptPet(id)}
-        >
-          Already adopted
-        </button>
-        <button
-          className={`ui {${isAdopted} ? "disabled" : "primary"} button`}
-          onClick={() => onAdoptPet(id)}
-        >
-          Adopt pet
-        </button>
+        {isAdopted ? (
+          <button className="ui disabled button">Already adopted</button>
+        ) : (
+          <button
+            className="ui primary button"
+            onClick={() => onAdoptPet(id, true)}
+          >
+            Adopt pet
+          </button>
+        )}
       </div>
     </div>
   );
