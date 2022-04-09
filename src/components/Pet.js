@@ -1,7 +1,7 @@
 import React from "react";
 
 function Pet({
-  pet: { type, gender, age, weight, name, isAdopted },
+  pet: { id, type, gender, age, weight, name, isAdopted },
   onAdoptPet,
 }) {
   return (
@@ -21,8 +21,18 @@ function Pet({
         </div>
       </div>
       <div className="extra content">
-        <button className="ui disabled button">Already adopted</button>
-        <button className="ui primary button">Adopt pet</button>
+        <button
+          className={`ui {${isAdopted} ? "primary" : "disabled"} button`}
+          onClick={() => onAdoptPet(id)}
+        >
+          Already adopted
+        </button>
+        <button
+          className={`ui {${isAdopted} ? "disabled" : "primary"} button`}
+          onClick={() => onAdoptPet(id)}
+        >
+          Adopt pet
+        </button>
       </div>
     </div>
   );
